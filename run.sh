@@ -9,6 +9,7 @@ for var in "${required_vars[@]}"; do
 done
 
 export OUT_DIR=/root/db_out
+export RCLONE_CMD="rclone --no-check-certificate"
 mkdir -p "$OUT_DIR"
 
 # Create the config from passed in env
@@ -21,13 +22,16 @@ for json in $(echo "$RCLONE_CONFIG_JSON" | jq -c '. | to_entries | .[]'); do
 	echo "$key = $value" >> $config_path
 done
 
-if ! rclone lsd target > /dev/null 2>&1; then
+echo "Checking rclone config"
+if ! $RCLONE_CMD lsd target: > /dev/null ; then
     echo "Rclone config invalid"
     exit 1
 fi
 
 # Create target bucket if not exists
-rclone mkdir target:"$TARGET_BUCKET"
+echo "Creating remote bucket if not exists"
+$RCLONE_CMD mkdir target:"$TARGET_BUCKET" > /dev/null
 
-# Run cron
-crond -f -d 8
+# Run scheduler
+echo "Running supercron"
+supercronic /cron-schedule

@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "Uploading"
-rclone copy "$OUT_DIR" target:"$TARGET_BUCKET"
+$RCLONE_CMD copy "$OUT_DIR" target:"$TARGET_BUCKET"
