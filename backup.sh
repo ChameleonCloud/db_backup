@@ -7,8 +7,10 @@ set -e
 OUT_FILE=mysqldump-"$(/usr/bin/date +"$DATE_FORMAT")".mysql.gz
 
 echo "Creating backup $OUT_FILE"
+# NOTE: column-statistics are not supported in mariadb, so disabled
 MYSQL_PWD=$DB_PASSWORD mysqldump --single-transaction --all-databases \
-    -h "$DB_HOST" \
+    --column-statistics=0 \
+    -u "$DB_USER" -h "$DB_HOST" \
     | gzip > "$OUT_DIR"/"$OUT_FILE"
 
 echo "Uploading"
