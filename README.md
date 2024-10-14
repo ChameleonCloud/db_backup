@@ -4,8 +4,8 @@ Add to docker-compose.yml:
 
 ```yaml
 db_backup:
-  name: db_backup
   image: ghcr.io/chameleoncloud/db_backup:latest
+  restart: always
   environment:
     DB_PASSWORD:
     DB_HOST:
