@@ -35,7 +35,6 @@ COPY cron-schedule /cron-schedule
 
 COPY run.sh .
 COPY backup.sh /
-COPY upload.sh /
 COPY cleanup.sh /
 
 CMD bash run.sh

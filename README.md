@@ -12,8 +12,9 @@ Required values:
 - `TARGET_BUCKET`: The bucket/directory to upload backups to
 
 Optional configuration:
-- `CLEANUP_KEEP_COUNT`: Always keep at least this many backups
-- `CLEANUP_AGE_DAYS`: Ignoring the most recent `$CLEANUP_KEEP_COUNT`many files, delete files older than this many days
+- `CLEANUP_KEEP_COUNT`: Always keep at least this many backups. Default 30
+- `CLEANUP_AGE_DAYS`: Ignoring the most recent `$CLEANUP_KEEP_COUNT`many files, delete files older than this many days. Default 30.
+- `DATE_FORMAT`: The date format to use in the backup filename. Defaults to `%Y-%m-%dT%H:%M:%SZ`
 
 Add to docker-compose.yml:
 
@@ -27,3 +28,5 @@ db_backup:
     RCLONE_CONFIG_JSON: # output of `rclone config dump | jq -c .my_source`
     TARGET_BUCKET: # Bucket to upload db backups to
 ```
+
+To save backups locally, mount a local directory to `/root/db_out`.

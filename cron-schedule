@@ -1,3 +1,2 @@
-0 6 * * * /backup.sh >> /var/log/cron.log 2>&1
-0 7 * * * /upload.sh >> /var/log/cron.log 2>&1
-0 8 * * * /cleanup.sh >> /var/log/cron.log 2>&1
+0 6 * * * /backup.sh
+0 7 * * * /cleanup.sh
