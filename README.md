@@ -13,6 +13,7 @@ Required values:
 - `TARGET_BUCKET`: The bucket/directory to upload backups to
 
 Optional configuration:
+- `DB_NAME`: If specified, backup this DB. Otherwise backups all databases.
 - `CLEANUP_KEEP_COUNT`: Always keep at least this many backups. Default 30
 - `CLEANUP_AGE_DAYS`: Ignoring the most recent `$CLEANUP_KEEP_COUNT`many files, delete files older than this many days. Default 30.
 - `DATE_FORMAT`: The date format to use in the backup filename. Defaults to `%Y-%m-%dT%H:%M:%SZ`
