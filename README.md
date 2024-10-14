@@ -6,7 +6,8 @@ Currently only supports mysql database backends.
 
 ## Configuration
 Required values:
-- `DB_PASSWORD`: Root DB password
+- `DB_USER`: DB user
+- `DB_PASSWORD`: DB password
 - `DB_HOST`: DB host
 - `RCLONE_CONFIG_JSON`: The output of `rclone config dump | jq -c .my_source`
 - `TARGET_BUCKET`: The bucket/directory to upload backups to
