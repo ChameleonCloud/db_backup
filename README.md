@@ -32,3 +32,5 @@ db_backup:
 ```
 
 To save backups locally, mount a local directory to `/root/db_out`.
+
+To manually create a backup, exec `/backup.sh`.

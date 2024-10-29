@@ -4,6 +4,9 @@ set -e
 
 : "${DATE_FORMAT:=%Y-%m-%dT%H:%M:%SZ}"
 
+OUT_DIR=/root/db_out
+RCLONE_CMD="rclone --no-check-certificate"
+
 OUT_FILE=mysqldump-"$(/usr/bin/date +"$DATE_FORMAT")".mysql.gz
 
 DB_SELECTOR=${DB_NAME:---all-databases}
