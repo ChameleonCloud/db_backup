@@ -6,6 +6,7 @@ RUN apt update && \
         jq \
         inotify-tools \
         mysql-client \
+        sqlite3 \
         wget \
         unzip \
     && apt-get clean \
