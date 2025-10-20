@@ -1,6 +1,20 @@
 #!/bin/bash
 
-required_vars=("DB_PASSWORD" "DB_HOST" "RCLONE_CONFIG_JSON" "TARGET_BUCKET")
+# Default DB_TYPE to MYSQL if not provided. Supported: MYSQL, SQLITE
+DB_TYPE=${DB_TYPE:-MYSQL}
+export DB_TYPE
+
+# Common required vars
+required_vars=("RCLONE_CONFIG_JSON" "TARGET_BUCKET")
+
+# DB-specific required vars
+if [ "${DB_TYPE}" = "SQLITE" ]; then
+  required_vars+=("DB_FILE")
+else
+  # default to MYSQL requirements
+  required_vars+=("DB_USER" "DB_PASSWORD" "DB_HOST")
+fi
+
 for var in "${required_vars[@]}"; do
   if [ -z "${!var}" ]; then
     echo "Error: Required variable $var is not set"
